@@ -21,6 +21,7 @@ public:
   void accept();
   void onAddressChanged();
   void onIsPointerChanged();
+  void onIsSignedChkChanged();
   void onLengthChanged();
   void onOffsetChanged();
   MemWatchEntry* getEntry() const;
@@ -51,4 +52,5 @@ private:
   QWidget* m_pointerWidget;
   QPushButton* m_btnAddOffset;
   QPushButton* m_btnRemoveOffset;
+  QCheckBox* m_chkSigned;
 };

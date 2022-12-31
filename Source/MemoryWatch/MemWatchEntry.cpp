@@ -26,7 +26,7 @@ MemWatchEntry::MemWatchEntry()
   m_base = Common::MemBase::base_decimal;
   m_memory = new char[sizeof(u8)];
   *m_memory = 0;
-  m_isUnsigned = false;
+  m_isUnsigned = true;
   m_consoleAddress = 0x80000000;
 }
 

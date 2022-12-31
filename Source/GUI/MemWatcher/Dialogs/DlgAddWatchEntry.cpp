@@ -56,6 +56,10 @@ void DlgAddWatchEntry::initialiseWidgets()
   m_cmbTypes = new QComboBox(this);
   m_cmbTypes->addItems(GUICommon::g_memTypeNames);
 
+  m_chkSigned = new QCheckBox("View value as signed", this);
+  connect(m_chkSigned, &QCheckBox::stateChanged, this,
+          &DlgAddWatchEntry::onIsSignedChkChanged);
+
   m_lengtWidget = new QWidget;
 
   m_spnLength = new QSpinBox(this);
@@ -134,6 +138,7 @@ void DlgAddWatchEntry::makeLayouts()
   main_layout->addWidget(m_pointerWidget);
   main_layout->addWidget(labelWidget);
   main_layout->addWidget(typeWidget);
+  main_layout->addWidget(m_chkSigned);
   main_layout->addWidget(m_lengtWidget);
   main_layout->addWidget(buttonBox);
   main_layout->addStretch();
@@ -347,7 +352,6 @@ void DlgAddWatchEntry::accept()
     else
       m_entry->setLabel(m_txbLabel->text());
     m_entry->setBase(Common::MemBase::base_decimal);
-    m_entry->setSignedUnsigned(false);
     setResult(QDialog::Accepted);
     hide();
   }
@@ -435,6 +439,12 @@ void DlgAddWatchEntry::onIsPointerChanged()
   }
   adjustSize();
   m_entry->setBoundToPointer(m_chkBoundToPointer->isChecked());
+  updatePreview();
+}
+
+void DlgAddWatchEntry::onIsSignedChkChanged()
+{
+  m_entry->setSignedUnsigned(!m_chkSigned->isChecked());
   updatePreview();
 }
 

@@ -14,7 +14,7 @@ public:
   MemWatchEntry();
   MemWatchEntry(const QString label, const u32 consoleAddress, const Common::MemType type,
                 const Common::MemBase = Common::MemBase::base_decimal,
-                const bool m_isUnsigned = false, const size_t length = 1,
+                const bool m_isUnsigned = true, const size_t length = 1,
                 const bool isBoundToPointer = false);
   MemWatchEntry(MemWatchEntry* entry);
   ~MemWatchEntry();
